@@ -1,6 +1,7 @@
-import { Plugin, ButtonView } from 'ckeditor5';
+import { Plugin, ButtonView, ClassicEditor } from 'ckeditor5';
 
 import ckeditor5Icon from '../theme/icons/ckeditor.svg';
+import FullScreenCommand from './fullscreencommand.js';
 
 export default class FullScreen extends Plugin {
 	public static get pluginName() {
@@ -10,26 +11,29 @@ export default class FullScreen extends Plugin {
 	public init(): void {
 		const editor = this.editor;
 		const t = editor.t;
-		const model = editor.model;
+		const fullsScreenCommand = new FullScreenCommand( editor );
 
-		// Add the "fullScreenButton" to feature components.
-		editor.ui.componentFactory.add( 'fullScreenButton', locale => {
+		if ( !( editor instanceof ClassicEditor ) ) {
+			throw new Error( 'The FullScreen plugin is compatible only with the ClassicEditor editor.' );
+		}
+
+		editor.commands.add( 'fullScreen', fullsScreenCommand );
+
+		editor.ui.componentFactory.add( 'fullScreen', locale => {
 			const view = new ButtonView( locale );
+
+			view.bind( 'isEnabled' ).to( fullsScreenCommand, 'isEnabled' );
+			view.bind( 'isOn' ).to( fullsScreenCommand, 'value' );
 
 			view.set( {
 				label: t( 'Full screen' ),
 				icon: ckeditor5Icon,
-				tooltip: true
+				tooltip: true,
+				isToggleable: true
 			} );
 
-			// Insert a text into the editor after clicking the button.
 			this.listenTo( view, 'execute', () => {
-				model.change( writer => {
-					const textNode = writer.createText( 'Hello CKEditor 5!' );
-
-					model.insertContent( textNode );
-				} );
-
+				editor.execute( 'fullScreen' );
 				editor.editing.view.focus();
 			} );
 

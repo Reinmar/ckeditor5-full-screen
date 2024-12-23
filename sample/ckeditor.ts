@@ -65,7 +65,7 @@ ClassicEditor
 			'undo',
 			'redo',
 			'|',
-			'fullScreenButton',
+			'fullScreen',
 			'|',
 			'heading',
 			'|',
@@ -100,7 +100,8 @@ ClassicEditor
 				'tableRow',
 				'mergeTableCells'
 			]
-		}
+		},
+		licenseKey: 'GPL'
 	} )
 	.then( editor => {
 		window.editor = editor;

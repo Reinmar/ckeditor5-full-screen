@@ -7,7 +7,7 @@
       "path": "src/fullscreen.ts",
       "uiComponents": [
         {
-          "name": "fullScreenButton",
+          "name": "fullScreen",
           "type": "Button",
           "iconPath": "theme/icons/ckeditor.svg"
         }
