@@ -15,7 +15,10 @@ module.exports = {
 		// Ignore compiled JavaScript files, as they are generated automatically.
 		'src/**/*.js',
 		// Also, do not check typing declarations, too.
-		'src/**/*.d.ts'
+		'src/**/*.d.ts',
+
+		// Ignore the entire `dist/` (the NIM build).
+		'dist-demos/**'
 	],
 	rules: {
 		//  This rule disallows importing from any path other than the package main entrypoint.

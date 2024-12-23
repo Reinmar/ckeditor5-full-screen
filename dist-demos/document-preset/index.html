@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CKEditor 5 Sample</title>
+		<link rel="icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/96x96.png" sizes="96x96">
+		<link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/120x120.png" sizes="120x120">
+		<link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/152x152.png" sizes="152x152">
+		<link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/167x167.png" sizes="167x167">
+		<link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/180x180.png" sizes="180x180">
+		<link rel="stylesheet" href="./style.css">
+		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.css" crossorigin>
+		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/44.1.0/ckeditor5-premium-features.css" crossorigin>
+		<link rel="stylesheet" href="../../dist/browser/index.css" crossorigin>
+		<style>
+			body {
+				background: linear-gradient(135deg, #f0f9f9 25%, transparent 25%) -50px 0,
+							linear-gradient(225deg, #f0f9f9 25%, transparent 25%) -50px 0,
+							linear-gradient(315deg, #f0f9f9 25%, transparent 25%),
+							linear-gradient(45deg, #f0f9f9 25%, transparent 25%);
+				background-size: 100px 100px;
+				background-color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main-container">
+			<div
+				class="editor-container editor-container_document-editor editor-container_include-outline editor-container_include-pagination"
+				id="editor-container"
+			>
+				<div class="editor-container__menu-bar" id="editor-menu-bar"></div>
+				<div class="editor-container__toolbar" id="editor-toolbar"></div>
+				<div class="editor-container__editor-wrapper">
+					<div class="editor-container__sidebar"><div id="editor-outline"></div></div>
+					<div class="editor-container__editor"><div id="editor"></div></div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js" crossorigin></script>
+		<script src="https://cdn.ckeditor.com/ckeditor5-premium-features/44.1.0/ckeditor5-premium-features.umd.js" crossorigin></script>
+		<script src="https://cdn.ckbox.io/ckbox/2.6.1/ckbox.js" crossorigin></script>
+		<script src="../../dist/browser/index.umd.js" crossorigin></script>
+		<script src="./main.js"></script>
+	</body>
+</html>

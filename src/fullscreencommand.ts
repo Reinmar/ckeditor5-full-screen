@@ -1,14 +1,29 @@
-import { Command, createElement } from 'ckeditor5';
+import { type Editor, Command, ClassicEditor, DecoupledEditor } from 'ckeditor5';
+import { EditorFullScreenHandler } from './handlers/base.js';
+import { ClassicEditorFullScreenHandler } from './handlers/classic.js';
+import { DecoupledEditorFullScreenHandler } from './handlers/decoupled.js';
 
 export default class FullScreenCommand extends Command {
 	/**
 	 * @observable
 	 * @readonly
 	*/
-	declare public value: boolean;
+	public override value = false;
 
 	declare private _container: HTMLElement;
-	declare private _placeholder: HTMLElement;
+	private _editorHandler: EditorFullScreenHandler;
+
+	public constructor( editor: Editor ) {
+		super( editor );
+
+		if ( editor instanceof ClassicEditor ) {
+			this._editorHandler = new ClassicEditorFullScreenHandler( editor );
+		} else if ( editor instanceof DecoupledEditor ) {
+			this._editorHandler = new DecoupledEditorFullScreenHandler( editor );
+		} else {
+			this._editorHandler = new EditorFullScreenHandler();
+		}
+	}
 
 	public override execute(): void {
 		if ( this.value ) {
@@ -19,42 +34,22 @@ export default class FullScreenCommand extends Command {
 	}
 
 	private _enterFullScreen(): void {
-		const editor = this.editor;
-
 		document.body.classList.add( 'ck-body_full-screen__on' );
 
-		const placeholder = createElement( document, 'div' );
-		const elementToReplace = editor.ui.element as HTMLElement;
+		this._editorHandler.enterFullScreen();
 
-		elementToReplace.parentNode!.insertBefore( placeholder, elementToReplace.nextSibling );
-
-		const fullScreenContainer = this._getContainer();
-		fullScreenContainer.append( elementToReplace );
-
-		this._placeholder = placeholder;
 		this.value = true;
+
+		this._editorHandler.afterEnterFullScreen();
 	}
 
 	private _exitFullScreen(): void {
-		const editor = this.editor;
-
 		document.body.classList.remove( 'ck-body_full-screen__on' );
 
-		this._placeholder.replaceWith( editor.ui.element as HTMLElement );
+		this._editorHandler.exitFullScreen();
 
 		this.value = false;
-	}
 
-	private _getContainer(): HTMLElement {
-		if ( !this._container ) {
-			this._container = createElement( document, 'div', {
-				class: 'ck ck-reset-all ck-editor_full-screen'
-			} );
-
-			// TODO: Wouldn't it be better to use here the body collection?
-			document.body.appendChild( this._container );
-		}
-
-		return this._container;
+		this._editorHandler.afterExitFullScreen();
 	}
 }

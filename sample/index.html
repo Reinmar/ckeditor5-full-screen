@@ -8,26 +8,16 @@
 	<title>CKEditor 5 – Development Sample</title>
 	<style>
 		body {
-			max-width: 800px;
+			max-width: 500px;
 			margin: 20px auto;
-		}
 
-		body.ck-body_full-screen__on {
-			overflow: hidden !important; /* Prevent scrolling. */
-		}
+			background: linear-gradient(135deg, #f0f9f9 25%, transparent 25%) -50px 0,
+						linear-gradient(225deg, #f0f9f9 25%, transparent 25%) -50px 0,
+						linear-gradient(315deg, #f0f9f9 25%, transparent 25%),
+						linear-gradient(45deg, #f0f9f9 25%, transparent 25%);
+			background-size: 100px 100px;
+			background-color: #ffffff;
 
-		body.ck-body_full-screen__on .ck.ck-editor_full-screen {
-			position: fixed;
-			top: 0;
-			left: 0;
-			height: calc( 100vh - 20px );
-			width: calc( 100vw - 20px );
-			background: hsl(0, 0%, 100%);
-			padding: 10px;
-		}
-
-		.ck.ck-editor_full-screen.ck-editor__classic > .ck-editor {
-			max-width: 795px;
 		}
 	</style>
 </head>

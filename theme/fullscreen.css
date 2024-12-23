@@ -1,0 +1,19 @@
+body.ck-body_full-screen__on {
+	overflow: hidden !important; /* Prevent scrolling. */
+}
+
+body.ck-body_full-screen__on .ck.ck-full-screen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: calc( 100vh - 20px );
+	width: calc( 100vw - 20px );
+	padding: 10px;
+	overflow: auto;
+	background: hsl(0, 0%, 100%);
+}
+
+.ck.ck-full-screen__classic > .ck-editor {
+	max-width: 795px;
+	margin: 0 auto;
+}
