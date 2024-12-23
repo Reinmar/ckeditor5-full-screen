@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    {
+      "name": "Full screen",
+      "className": "FullScreen",
+      "description": "Adds text to the editor.",
+      "path": "src/fullscreen.ts",
+      "uiComponents": [
+        {
+          "name": "fullScreenButton",
+          "type": "Button",
+          "iconPath": "theme/icons/ckeditor.svg"
+        }
+      ]
+    }
+  ]
+}
