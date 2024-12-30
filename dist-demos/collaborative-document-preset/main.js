@@ -83,6 +83,7 @@ const {
 	TrackChanges,
 	TrackChangesData
 } = window.CKEDITOR_PREMIUM_FEATURES;
+const FullScreen = window.FullScreen.FullScreen;
 
 const LICENSE_KEY =
 	'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3MzU2MDMxOTksImp0aSI6IjIzZTFmNGZmLTg5YjktNGEwNi1hZjkwLTQ5MDVhYWJhZDMyMyIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6ImJiZWJmYTc2In0.abRFaE2Y7iLPZ7hDsbR_xa-iJyFYlApqX3vTUE-CCIwYwIjek6t9TgHqsUkkXCg4PhVQ9pRG_dOMF-27gqclyg';
@@ -270,6 +271,8 @@ class DocumentOutlineToggler extends Plugin {
 const editorConfig = {
 	toolbar: {
 		items: [
+			'fullScreen',
+			'|',
 			'previousPage',
 			'nextPage',
 			'|',
@@ -309,6 +312,7 @@ const editorConfig = {
 		shouldNotGroupWhenFull: false
 	},
 	plugins: [
+		FullScreen,
 		Alignment,
 		Autoformat,
 		AutoImage,

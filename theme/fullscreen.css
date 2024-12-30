@@ -1,19 +1,149 @@
+.ck.ck-full-screen {
+	display: none;
+}
+
 body.ck-body_full-screen__on {
 	overflow: hidden !important; /* Prevent scrolling. */
 }
 
 body.ck-body_full-screen__on .ck.ck-full-screen {
+	display: block;
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: calc( 100vh - 20px );
-	width: calc( 100vw - 20px );
-	padding: 10px;
+	height: calc(100vh - 20px);
+	width: calc(100vw - 20px);
+	padding: 10px; /* Prevent the editor from touching the window edges. */
 	overflow: auto;
 	background: hsl(0, 0%, 100%);
 }
 
-.ck.ck-full-screen__classic > .ck-editor {
-	max-width: 795px;
-	margin: 0 auto;
+.ck.ck-full-screen__main-container {
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.ck.ck-full-screen__left-sidebar {
+	display: none;
+}
+.ck.ck-full-screen__with-left-sidebar .ck-full-screen__left-sidebar {
+	display: block;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 280px;
+}
+.ck.ck-full-screen__right-sidebar {
+	display: none;
+}
+.ck.ck-full-screen__with-right-sidebar .ck-full-screen__right-sidebar {
+	display: block;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 280px;
+}
+
+/**
+ * Classic editor.
+ */
+
+.ck.ck-full-screen__classic .ck-full-screen__editor  {
+	box-sizing: border-box;
+
+	/* Why does the Builder use min+max together instead of just setting the width? */
+	min-width: calc(210mm + 2px);
+	max-width: calc(210mm + 2px);
+}
+
+.ck.ck-full-screen__classic .ck-full-screen__editor-wrapper {
+	display: flex;
+}
+
+.ck.ck-full-screen__classic .ck-full-screen__editor .ck-editor__editable {
+	padding: 5mm 12mm;
+	background: hsl(0, 0%, 100%);
+}
+
+/**
+ * Decoupled editor.
+ */
+
+.ck.ck-full-screen__decoupled .ck-full-screen__main-container {
+	/*
+		Make the toolbars wider if there are no sidebars.
+		This deserves to be smarter. When the full screen container is narrow, we should take 100% of its width.
+		And when it has like 3000px width, only to max 2 * editable width, so it does not grow too much.
+	 */
+	min-width: calc(0.66 * 100vw);
+
+	border: 1px solid var(--ck-color-base-border);
+}
+
+.ck.ck-full-screen__decoupled .ck-full-screen__toolbar {
+	display: flex;
+	position: relative;
+	box-shadow: 0 2px 3px hsla(0, 0%, 0%, 0.078);
+}
+
+.ck.ck-full-screen__decoupled .ck-full-screen__toolbar > .ck.ck-toolbar {
+	flex-grow: 1;
+	width: 0;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}
+
+.ck.ck-full-screen__decoupled .ck-full-screen__menu-bar > .ck.ck-menu-bar {
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}
+
+.ck.ck-full-screen__decoupled .ck-full-screen__editor-wrapper {
+	display: flex;
+	overflow-y: scroll;
+	/* TODO this is some random 100px here. The entire thing should be restyled so it takes the entire height. */
+	height: calc(100vh - 100px);
+	justify-content: center;
+	background: var(--ck-color-base-foreground);
+}
+
+.ck.ck-full-screen__decoupled .ck-full-screen__editor {
+	margin-top: 28px;
+	margin-bottom: 28px; /* It doesn't work here :( */
+	height: 100%;
+}
+
+.ck.ck-full-screen__decoupled .ck-full-screen__editor .ck.ck-editor__editable {
+	box-sizing: border-box;
+	min-width: calc(210mm + 2px);
+	max-width: calc(210mm + 2px);
+	min-height: 297mm;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: fit-content;
+	padding: 20mm 12mm;
+	border: 1px hsl(0, 0%, 82.7%) solid;
+	background: hsl(0, 0%, 100%);
+	box-shadow: 0 2px 3px hsla(0, 0%, 0%, 0.078);
+	flex: 1 1 auto;
+}
+/*
+	The above styles override the default focus ring so we need to bring it back.
+	The same happens in the Builder. I know that GDoc does not show the focus ring, so this is to be discussed
+	whether we should.
+*/
+.ck.ck-full-screen__decoupled .ck-full-screen__editor .ck.ck-editor__editable.ck-focused {
+	border: var(--ck-focus-ring);
+}
+
+.ck.ck-full-screen__decoupled.ck-full-screen__with-left-sidebar .ck-full-screen__left-sidebar {
+	margin-top: 28px;
+}
+.ck.ck-full-screen__decoupled.ck-full-screen__with-left-sidebar .ck-full-screen__right-sidebar {
+	margin-top: 28px;
 }

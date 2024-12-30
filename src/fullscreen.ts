@@ -13,16 +13,16 @@ export default class FullScreen extends Plugin {
 	public init(): void {
 		const editor = this.editor;
 		const t = editor.t;
-		const fullsScreenCommand = new FullScreenCommand( editor );
+		const fullScreenCommand = new FullScreenCommand( editor );
 
 		if (
 			!( editor instanceof ClassicEditor ) &&
 			!( editor instanceof DecoupledEditor )
 		) {
-			throw new Error( 'The FullScreen plugin is compatible only with the ClassicEditor and Decoupled editors.' );
+			throw new Error( 'The FullScreen plugin is compatible only with the ClassicEditor and DecoupledEditor.' );
 		}
 
-		editor.commands.add( 'fullScreen', fullsScreenCommand );
+		editor.commands.add( 'fullScreen', fullScreenCommand );
 
 		editor.ui.componentFactory.add( 'fullScreen', locale => {
 			const view = new ButtonView( locale );
@@ -34,8 +34,8 @@ export default class FullScreen extends Plugin {
 				isToggleable: true
 			} );
 
-			view.bind( 'isEnabled' ).to( fullsScreenCommand, 'isEnabled' );
-			view.bind( 'isOn' ).to( fullsScreenCommand, 'value' );
+			view.bind( 'isEnabled' ).to( fullScreenCommand, 'isEnabled' );
+			view.bind( 'isOn' ).to( fullScreenCommand, 'value' );
 
 			this.listenTo( view, 'execute', () => {
 				editor.execute( 'fullScreen' );

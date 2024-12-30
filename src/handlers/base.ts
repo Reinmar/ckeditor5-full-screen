@@ -38,7 +38,7 @@ export class EditorFullScreenHandler {
 	public getContainer(): HTMLElement {
 		if ( !this._container ) {
 			this._container = createElement( document, 'div', {
-				class: 'ck ck-reset-all ck-full-screen'
+				class: 'ck ck-full-screen'
 			} );
 
 			// TODO: Wouldn't it be better to use here the body collection?
